@@ -1,6 +1,5 @@
 package com.davidblanar.growthbook;
 
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.junit.jupiter.api.Assertions;
@@ -55,9 +54,11 @@ public class HelperTest {
             var expected = test.get(2).getAsJsonArray();
             System.out.println("Testing getBucketRange " + title);
             var ranges = Helper.getBucketRanges(numVariations, coverage, weights);
+            Assertions.assertEquals(expected.size(), ranges.length);
             for (var i = 0; i < ranges.length; i++) {
                 var inner = ranges[i];
                 var expectedInner = expected.get(i).getAsJsonArray();
+                Assertions.assertEquals(expectedInner.size(), inner.length);
                 for (var j = 0; j < inner.length; j++) {
                     var formattedExpected = df.format(expectedInner.get(j).getAsFloat());
                     var formattedActual = df.format(inner[j]);
@@ -104,6 +105,22 @@ public class HelperTest {
             var expected = test.get(3).getAsBoolean();
             var actual = Helper.inNamespace(userId, ns);
             Assertions.assertEquals(expected, actual);
+        }
+    }
+
+    @Test
+    public void testGetEqualWeights() {
+        var tests = casesObj.get("getEqualWeights").getAsJsonArray();
+        for (var t: tests) {
+            var test = t.getAsJsonArray();
+            var numVariations = test.get(0).getAsInt();
+            System.out.println("Testing getEqualWeights " + numVariations);
+            var jsonWeights = test.get(1).getAsJsonArray();
+            var actual = Helper.getEqualWeights(numVariations);
+            Assertions.assertEquals(jsonWeights.size(), actual.length);
+            for (var i = 0; i < actual.length; i++) {
+                Assertions.assertEquals(jsonWeights.get(i).getAsFloat(), actual[i]);
+            }
         }
     }
 }
