@@ -1,14 +1,24 @@
 package com.davidblanar.growthbook;
 
-import java.util.ArrayList;
+import java.math.BigInteger;
 
 public class Helper {
-    private static final FNV fnv = new FNV();
+    private static final BigInteger INIT32 = new BigInteger("811c9dc5", 16);
+    private static final BigInteger PRIME32 = new BigInteger("01000193", 16);
+    private static final BigInteger MOD32 = new BigInteger("2").pow(32);
 
-    public static float hash(String str) {
-        var bytes = str.getBytes();
-        var n = fnv.fnv1a_32(bytes);
-        return (n.floatValue() % 1000) / 1000;
+    private static double fnv1a32(String str) {
+        BigInteger hash = INIT32;
+        for (int i = 0; i < str.length(); i++) {
+            hash = hash.xor(new BigInteger(String.valueOf(str.charAt(i) & 0xff)));
+            hash = hash.multiply(PRIME32).mod(MOD32);
+        }
+        return hash.doubleValue();
+    }
+
+    public static double hash(String str) {
+        var n = fnv1a32(str);
+        return (n % 1000) / 1000;
     }
 
     public static boolean inNamespace(String userId, Namespace namespace) {
