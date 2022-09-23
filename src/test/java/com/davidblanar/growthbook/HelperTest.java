@@ -5,20 +5,13 @@ import com.google.gson.JsonParser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.text.DecimalFormat;
 
 public class HelperTest {
-    private final JsonObject casesObj = JsonParser.parseString(this.getCases()).getAsJsonObject();
+    private final JsonObject casesObj = CasesHelper.getCases();
 
     public HelperTest() throws IOException {}
-
-    private String getCases() throws IOException {
-        var path = this.getClass().getClassLoader().getResource("cases.json").getPath();
-        return Files.readString(new File(path).toPath());
-    };
 
     @Test
     public void testHash() {
