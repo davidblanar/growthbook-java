@@ -9,7 +9,7 @@ public class Experiment {
     public List<Float> weights;
     public boolean active;
     public float coverage;
-    public Map<String, Object>  condition;
+    public Map<String, Object> condition;
     public Namespace namespace;
     public int force;
     public String hashAttribute;
