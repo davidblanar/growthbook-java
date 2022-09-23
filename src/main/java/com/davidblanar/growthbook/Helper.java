@@ -24,7 +24,7 @@ public class Helper {
 
     public static boolean inNamespace(String userId, Namespace namespace) {
         var n = hash(userId + "__" + namespace.id);
-        return n >= namespace.range[1] && n < namespace.range[2];
+        return n >= namespace.range[0] && n < namespace.range[1];
     }
 
     public static float[] getEqualWeights(int numVariations) {

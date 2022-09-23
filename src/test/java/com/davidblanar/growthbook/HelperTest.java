@@ -1,5 +1,7 @@
 package com.davidblanar.growthbook;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -10,7 +12,7 @@ import java.nio.file.Files;
 import java.text.DecimalFormat;
 
 public class HelperTest {
-    private final String cases = this.getCases();
+    private final JsonObject casesObj = JsonParser.parseString(this.getCases()).getAsJsonObject();
 
     public HelperTest() throws IOException {}
 
@@ -21,7 +23,6 @@ public class HelperTest {
 
     @Test
     public void testHash() {
-        var casesObj = JsonParser.parseString(cases).getAsJsonObject();
         var tests = casesObj.get("hash").getAsJsonArray();
         for (var t: tests) {
             var test = t.getAsJsonArray();
@@ -35,7 +36,6 @@ public class HelperTest {
 
     @Test
     public void testGetBucketRange() {
-        var casesObj = JsonParser.parseString(cases).getAsJsonObject();
         var tests = casesObj.get("getBucketRange").getAsJsonArray();
         for (var t: tests) {
             var df = new DecimalFormat("0.000000");
@@ -53,7 +53,7 @@ public class HelperTest {
                 }
             }
             var expected = test.get(2).getAsJsonArray();
-            System.out.println("Testing bucket range " + title);
+            System.out.println("Testing getBucketRange " + title);
             var ranges = Helper.getBucketRanges(numVariations, coverage, weights);
             for (var i = 0; i < ranges.length; i++) {
                 var inner = ranges[i];
@@ -64,6 +64,46 @@ public class HelperTest {
                     Assertions.assertEquals(formattedExpected, formattedActual);
                 }
             }
+        }
+    }
+
+    @Test
+    public void testChooseVariation() {
+        var tests = casesObj.get("chooseVariation").getAsJsonArray();
+        for (var t: tests) {
+            var test = t.getAsJsonArray();
+            var title = test.get(0).getAsString();
+            var n = test.get(1).getAsFloat();
+            var jsonRanges = test.get(2).getAsJsonArray();
+            float[][] ranges = new float[jsonRanges.size()][2];
+            for (var i = 0; i < jsonRanges.size(); i++) {
+                var inner = jsonRanges.get(i).getAsJsonArray();
+                for (var j = 0; j < inner.size(); j++) {
+                    ranges[i][j] = inner.get(j).getAsFloat();
+                }
+            }
+            System.out.println("Testing chooseVariation " + title);
+            var expected = test.get(3).getAsInt();
+            var actual = Helper.chooseVariation(n, ranges);
+            Assertions.assertEquals(expected, actual);
+        }
+    }
+
+    @Test
+    public void testInNamespace() {
+        var tests = casesObj.get("inNamespace").getAsJsonArray();
+        for (var t: tests) {
+            var test = t.getAsJsonArray();
+            var title = test.get(0).getAsString();
+            var userId = test.get(1).getAsString();
+            var namespace = test.get(2).getAsJsonArray();
+            var ns = new Namespace();
+            ns.id = namespace.get(0).getAsString();
+            ns.range = new float[]{namespace.get(1).getAsFloat(), namespace.get(2).getAsFloat()};
+            System.out.println("Testing inNamespace " + title);
+            var expected = test.get(3).getAsBoolean();
+            var actual = Helper.inNamespace(userId, ns);
+            Assertions.assertEquals(expected, actual);
         }
     }
 }
