@@ -1,7 +1,6 @@
 package com.davidblanar.growthbook;
 
 import java.math.BigInteger;
-import java.util.Arrays;
 
 public class Helper {
     private static final BigInteger INIT32 = new BigInteger("811c9dc5", 16);
@@ -61,7 +60,7 @@ public class Helper {
         return ranges;
     }
 
-    public static int chooseVariation(float n, float[][] ranges) {
+    public static int chooseVariation(double n, float[][] ranges) {
         for (int i = 0; i < ranges.length; i++) {
             if (n >= ranges[i][0] && n < ranges[i][1]) {
                 return i;

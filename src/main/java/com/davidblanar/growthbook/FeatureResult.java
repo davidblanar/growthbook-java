@@ -1,10 +1,10 @@
 package com.davidblanar.growthbook;
 
 public class FeatureResult {
-    public final String UNKNOWN_FEATURE = "unknownFeature";
-    public final String DEFAULT_VALUE = "defaultValue";
-    public final String FORCE = "force";
-    public final String EXPERIMENT = "experiment";
+    public static final String UNKNOWN_FEATURE = "unknownFeature";
+    public static final String DEFAULT_VALUE = "defaultValue";
+    public static final String FORCE = "force";
+    public static final String EXPERIMENT = "experiment";
 
     public Object value;
     public boolean on;

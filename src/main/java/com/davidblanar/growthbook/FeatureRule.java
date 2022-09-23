@@ -1,11 +1,12 @@
 package com.davidblanar.growthbook;
 
+import com.google.gson.JsonElement;
+
 import java.util.List;
-import java.util.Map;
 
 public class FeatureRule {
-    public Map<String, Object> condition;
-    public float coverage;
+    public JsonElement condition;
+    public Float coverage;
     public Object force;
     public List<Object> variations;
     public String key;

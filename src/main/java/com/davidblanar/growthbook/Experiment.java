@@ -8,9 +8,9 @@ public class Experiment {
     public List<Object> variations;
     public List<Float> weights;
     public boolean active;
-    public float coverage;
+    public Float coverage;
     public Map<String, Object> condition;
     public Namespace namespace;
-    public int force;
+    public Integer force;
     public String hashAttribute;
 }

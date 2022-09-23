@@ -10,33 +10,33 @@ import java.util.Objects;
 import java.util.regex.Pattern;
 
 public class ConditionEvaluator {
-    private final String OR = "$or";
-    private final String NOR = "$nor";
-    private final String AND = "$and";
-    private final String NOT = "$not";
-    private final String TYPE = "$type";
-    private final String EXISTS = "$exists";
-    private final String IN = "$in";
-    private final String NIN = "$nin";
-    private final String ALL = "$all";
-    private final String ELEM_MATCH = "$elemMatch";
-    private final String SIZE = "$size";
-    private final String EQ = "$eq";
-    private final String NE = "$ne";
-    private final String LT = "$lt";
-    private final String LTE = "$lte";
-    private final String GT = "$gt";
-    private final String GTE = "$gte";
-    private final String REGEX = "$regex";
-    private final String STRING = "string";
-    private final String NUMBER = "number";
-    private final String BOOLEAN = "boolean";
-    private final String ARRAY = "array";
-    private final String OBJECT = "object";
-    private final String NULL = "null";
-    private final String UNKNOWN = "unknown";
+    private static final String OR = "$or";
+    private static final String NOR = "$nor";
+    private static final String AND = "$and";
+    private static final String NOT = "$not";
+    private static final String TYPE = "$type";
+    private static final String EXISTS = "$exists";
+    private static final String IN = "$in";
+    private static final String NIN = "$nin";
+    private static final String ALL = "$all";
+    private static final String ELEM_MATCH = "$elemMatch";
+    private static final String SIZE = "$size";
+    private static final String EQ = "$eq";
+    private static final String NE = "$ne";
+    private static final String LT = "$lt";
+    private static final String LTE = "$lte";
+    private static final String GT = "$gt";
+    private static final String GTE = "$gte";
+    private static final String REGEX = "$regex";
+    private static final String STRING = "string";
+    private static final String NUMBER = "number";
+    private static final String BOOLEAN = "boolean";
+    private static final String ARRAY = "array";
+    private static final String OBJECT = "object";
+    private static final String NULL = "null";
+    private static final String UNKNOWN = "unknown";
 
-    public boolean evalCondition(JsonElement attributes, JsonElement condition) {
+    public static boolean evalCondition(JsonElement attributes, JsonElement condition) {
         if (condition.isJsonArray()) {
             return false;
         }
@@ -65,7 +65,7 @@ public class ConditionEvaluator {
         return true;
     }
 
-    private boolean evalOr(JsonElement attributes, JsonArray conditions) {
+    private static boolean evalOr(JsonElement attributes, JsonArray conditions) {
         if (conditions.size() == 0) {
             return true;
         }
@@ -77,7 +77,7 @@ public class ConditionEvaluator {
         return false;
     }
 
-    private boolean evalAnd(JsonElement attributes, JsonArray conditions) {
+    private static boolean evalAnd(JsonElement attributes, JsonArray conditions) {
         for (var c: conditions) {
             if (!evalCondition(attributes, c)) {
                 return false;
@@ -86,7 +86,7 @@ public class ConditionEvaluator {
         return true;
     }
 
-    private boolean isOperatorObject(JsonElement obj) {
+    private static boolean isOperatorObject(JsonElement obj) {
         if (!obj.isJsonObject()) {
             return false;
         }
@@ -98,7 +98,7 @@ public class ConditionEvaluator {
         return true;
     }
 
-    private String getType(JsonElement obj) {
+    private static String getType(JsonElement obj) {
         if (obj.isJsonNull()) {
             return NULL;
         }
@@ -123,7 +123,7 @@ public class ConditionEvaluator {
         return UNKNOWN;
     }
 
-    private JsonElement getPath(JsonElement attributes, String key) {
+    private static JsonElement getPath(JsonElement attributes, String key) {
         var paths = new ArrayList<String>();
         if (key.contains(".")) {
             Collections.addAll(paths, key.split("\\."));
@@ -144,7 +144,7 @@ public class ConditionEvaluator {
         return element;
     }
 
-    private boolean evalConditionValue(JsonElement conditionValue, JsonElement attributeValue) {
+    private static boolean evalConditionValue(JsonElement conditionValue, JsonElement attributeValue) {
         if (attributeValue != null && conditionValue.isJsonPrimitive() && attributeValue.isJsonPrimitive()) {
             return Objects.equals(conditionValue.getAsJsonPrimitive(), attributeValue.getAsJsonPrimitive());
         }
@@ -181,7 +181,7 @@ public class ConditionEvaluator {
         return true;
     }
 
-    private boolean elemMatch(JsonElement attributeValue, JsonElement condition) {
+    private static boolean elemMatch(JsonElement attributeValue, JsonElement condition) {
         if (attributeValue.isJsonArray()) {
             var attrs = attributeValue.getAsJsonArray();
             for (var item: attrs) {
@@ -197,7 +197,7 @@ public class ConditionEvaluator {
         return false;
     }
 
-    private boolean evalOperatorCondition(String operator, JsonElement attributeValue, JsonElement conditionValue) {
+    private static boolean evalOperatorCondition(String operator, JsonElement attributeValue, JsonElement conditionValue) {
         if (Objects.equals(operator, TYPE)) {
             return Objects.equals(getType(attributeValue), conditionValue.getAsJsonPrimitive().getAsString());
         }
@@ -270,7 +270,7 @@ public class ConditionEvaluator {
         return false;
     }
 
-    private boolean compare(String operator, JsonPrimitive attributeValue, JsonPrimitive conditionValue) {
+    private static boolean compare(String operator, JsonPrimitive attributeValue, JsonPrimitive conditionValue) {
         if (attributeValue.isNumber() && conditionValue.isNumber()) {
             var x = attributeValue.getAsDouble();
             var y = conditionValue.getAsDouble();
