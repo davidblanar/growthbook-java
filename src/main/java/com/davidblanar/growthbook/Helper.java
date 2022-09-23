@@ -1,6 +1,7 @@
 package com.davidblanar.growthbook;
 
 import java.math.BigInteger;
+import java.util.Arrays;
 
 public class Helper {
     private static final BigInteger INIT32 = new BigInteger("811c9dc5", 16);
@@ -38,9 +39,9 @@ public class Helper {
     }
 
     public static float[][] getBucketRanges(int numVariations, float coverage, float[] weights) {
-        if (coverage < 0) coverage = 0;
-        if (coverage > 1) coverage = 1;
-        if (weights.length != numVariations) {
+        if (coverage < 0.0) coverage = 0.0F;
+        if (coverage > 1.0) coverage = 1.0F;
+        if (weights == null || weights.length != numVariations) {
             weights = getEqualWeights(numVariations);
         }
         var sum = sumArray(weights);
@@ -48,11 +49,11 @@ public class Helper {
             weights = getEqualWeights(numVariations);
         }
         float cumulative = 0;
-        float start;
         float[][] ranges = new float[weights.length][2];
         var i = 0;
+
         for (var w: weights) {
-            start = cumulative;
+            var start = cumulative;
             cumulative += w;
             ranges[i] = new float[]{start, start + coverage * w};
             i++;
@@ -70,7 +71,7 @@ public class Helper {
     }
 
     private static float sumArray(float[] array) {
-        int sum = 0;
+        float sum = 0;
         for (var value : array) {
             sum += value;
         }
