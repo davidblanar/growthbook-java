@@ -2020,48 +2020,6 @@
         "off": false,
         "source": "force"
       }
-    ],
-    [
-      "include experiments when forced",
-      {
-        "attributes": { "id": "123" },
-        "forcedVariations": {
-          "feature": 1
-        },
-        "features": {
-          "feature": {
-            "defaultValue": 0,
-            "rules": [
-              {
-                "variations": [0, 1, 2, 3]
-              },
-              {
-                "force": 3
-              }
-            ]
-          }
-        }
-      },
-      "feature",
-      {
-        "value": 1,
-        "on": true,
-        "off": false,
-        "source": "experiment",
-        "experiment": {
-          "key": "feature",
-          "variations": [0, 1, 2, 3]
-        },
-        "experimentResult": {
-          "featureId": "feature",
-          "value": 1,
-          "variationId": 1,
-          "inExperiment": true,
-          "hashUsed": false,
-          "hashAttribute": "id",
-          "hashValue": "123"
-        }
-      }
     ]
   ],
   "run": [

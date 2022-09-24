@@ -21,9 +21,11 @@ public class Helper {
         return (n % 1000) / 1000;
     }
 
-    public static boolean inNamespace(String userId, Namespace namespace) {
-        var n = hash(userId + "__" + namespace.id);
-        return n >= namespace.range[0] && n < namespace.range[1];
+    public static boolean inNamespace(String userId, Object[] namespace) {
+        var n = hash(userId + "__" + namespace[0]);
+        var start = (double) namespace[1];
+        var end = (double) namespace[2];
+        return n >= start && n < end;
     }
 
     public static float[] getEqualWeights(int numVariations) {

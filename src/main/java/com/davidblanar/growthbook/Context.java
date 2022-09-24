@@ -1,22 +1,20 @@
 package com.davidblanar.growthbook;
 
-import java.util.Map;
-
 public class Context {
     public boolean enabled;
-    public Map<String, Object> attributes;
+    public Attributes attributes;
     public String url;
-    public Map<String, Feature> features;
-    public Map<String, Integer> forcedVariations;
+    public Features features;
+    public ForcedVariations forcedVariations;
     public boolean qaMode;
     public Runnable trackingCallback;
 
     public Context(
         boolean enabled,
-        Map<String, Object> attributes,
+        Attributes attributes,
         String url,
-        Map<String, Feature> features,
-        Map<String, Integer> forcedVariations,
+        Features features,
+        ForcedVariations forcedVariations,
         boolean qaMode,
         Runnable trackingCallback
     ) {

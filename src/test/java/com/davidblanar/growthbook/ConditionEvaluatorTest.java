@@ -17,10 +17,10 @@ public class ConditionEvaluatorTest {
         for (var t: tests) {
             var test = t.getAsJsonArray();
             var title = test.get(0).getAsString();
+            System.out.println("Testing evalCondition " + title);
             var condition = test.get(1);
             var attributes = test.get(2);
             var expected = test.get(3).getAsBoolean();
-            System.out.println("Testing evalCondition " + title);
             var actual = ConditionEvaluator.evalCondition(attributes, condition);
             Assertions.assertEquals(expected, actual);
 

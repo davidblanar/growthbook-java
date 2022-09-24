@@ -11,6 +11,6 @@ public class FeatureRule {
     public List<Object> variations;
     public String key;
     public List<Float> weights;
-    public Namespace namespace;
+    public Object[] namespace;
     public String hashAttribute;
 }
