@@ -196,7 +196,9 @@ public class GrowthBook {
             return getExperimentResult(experiment, 0, false, featureId, false);
         }
         var result = getExperimentResult(experiment, assigned, true, featureId, true);
-        // TODO fire context tracking callback if not null
+        if (context.trackingCallback != null) {
+            context.trackingCallback.run(experiment, result);
+        }
         return result;
     }
 

@@ -113,4 +113,27 @@ public class HelperTest {
             }
         }
     }
+
+    @Test
+    public void testParseFeaturesFromGBResponseSuccess() {
+        var jsonString = "{\"status\":200,\"features\":{\"my_feature\":{\"defaultValue\":\"default\"},\"my_feature_2\":{\"defaultValue\":\"default\"}}}";
+        var result = Helper.parseFeaturesFromGBResponse(jsonString);
+        Assertions.assertEquals(2, result.size());
+        Assertions.assertTrue(result.containsKey("my_feature"));
+        Assertions.assertTrue(result.containsKey("my_feature_2"));
+    }
+
+    @Test
+    public void testParseFeaturesFromGBResponseFailure() {
+        var jsonString = "{\"status\":500,\"features\":{}}";
+        var result = Helper.parseFeaturesFromGBResponse(jsonString);
+        Assertions.assertEquals(0, result.size());
+    }
+
+    @Test
+    public void testParseFeaturesFromGBResponseMalformed() {
+        var jsonString = "<html></html>";
+        var result = Helper.parseFeaturesFromGBResponse(jsonString);
+        Assertions.assertEquals(0, result.size());
+    }
 }

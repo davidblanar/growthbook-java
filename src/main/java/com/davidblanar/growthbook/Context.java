@@ -7,7 +7,7 @@ public class Context {
     public Features features;
     public ForcedVariations forcedVariations;
     public boolean qaMode;
-    public Runnable trackingCallback;
+    public TrackingCallback trackingCallback;
 
     public Context(
         boolean enabled,
@@ -16,7 +16,7 @@ public class Context {
         Features features,
         ForcedVariations forcedVariations,
         boolean qaMode,
-        Runnable trackingCallback
+        TrackingCallback trackingCallback
     ) {
         this.enabled = enabled;
         this.attributes = attributes;
