@@ -2,7 +2,7 @@ package com.davidblanar.growthbook;
 
 import java.util.List;
 
-public class Feature {
+public class GBFeature {
     public Object defaultValue;
-    public List<FeatureRule> rules;
+    public List<GBFeatureRule> rules;
 }

@@ -1,6 +1,6 @@
 package com.davidblanar.growthbook;
 
-public class FeatureResult {
+public class GBFeatureResult {
     public static final String UNKNOWN_FEATURE = "unknownFeature";
     public static final String DEFAULT_VALUE = "defaultValue";
     public static final String FORCE = "force";
@@ -11,6 +11,6 @@ public class FeatureResult {
     public boolean off;
     // one of "unknownFeature", "defaultValue", "force", "experiment"
     public String source;
-    public Experiment experiment;
-    public ExperimentResult experimentResult;
+    public GBExperiment experiment;
+    public GBExperimentResult experimentResult;
 }

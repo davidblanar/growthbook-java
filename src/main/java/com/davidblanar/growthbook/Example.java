@@ -3,16 +3,16 @@ package com.davidblanar.growthbook;
 public class Example {
     public static void main(String[] args) {
         var jsonString = fakeApiCall();
-        var features = Helper.parseFeaturesFromGBResponse(jsonString);
-        var attributes = new Attributes();
-        var forcedVariations = new ForcedVariations();
-        var trackingCallback = new TrackingCallback() {
+        var features = GBHelper.parseFeaturesFromGBResponse(jsonString);
+        var attributes = new GBAttributes();
+        var forcedVariations = new GBForcedVariations();
+        var trackingCallback = new GBTrackingCallback() {
             @Override
-            public void run(Experiment experiment, ExperimentResult result) {
+            public void run(GBExperiment experiment, GBExperimentResult result) {
                 // call tracking code
             }
         };
-        var context = new Context(
+        var context = new GBContext(
             true, // enabled
             attributes,
             "", // url

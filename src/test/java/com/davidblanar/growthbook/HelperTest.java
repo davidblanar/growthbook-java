@@ -20,7 +20,7 @@ public class HelperTest {
             var hash = test.get(0).getAsString();
             System.out.println("Testing hash " + hash);
             var expected = test.get(1).getAsDouble();
-            var actual = Helper.hash(hash);
+            var actual = GBHelper.hash(hash);
             Assertions.assertEquals(expected, actual);
         }
     }
@@ -45,7 +45,7 @@ public class HelperTest {
                 }
             }
             var expected = test.get(2).getAsJsonArray();
-            var ranges = Helper.getBucketRanges(numVariations, coverage, weights);
+            var ranges = GBHelper.getBucketRanges(numVariations, coverage, weights);
             Assertions.assertEquals(expected.size(), ranges.length);
             for (var i = 0; i < ranges.length; i++) {
                 var inner = ranges[i];
@@ -77,7 +77,7 @@ public class HelperTest {
                 }
             }
             var expected = test.get(3).getAsInt();
-            var actual = Helper.chooseVariation(n, ranges);
+            var actual = GBHelper.chooseVariation(n, ranges);
             Assertions.assertEquals(expected, actual);
         }
     }
@@ -93,7 +93,7 @@ public class HelperTest {
             var namespace = test.get(2).getAsJsonArray();
             var ns = new Object[]{namespace.get(0).getAsString(), namespace.get(1).getAsDouble(), namespace.get(2).getAsDouble()};
             var expected = test.get(3).getAsBoolean();
-            var actual = Helper.inNamespace(userId, ns);
+            var actual = GBHelper.inNamespace(userId, ns);
             Assertions.assertEquals(expected, actual);
         }
     }
@@ -106,7 +106,7 @@ public class HelperTest {
             var numVariations = test.get(0).getAsInt();
             System.out.println("Testing getEqualWeights " + numVariations);
             var jsonWeights = test.get(1).getAsJsonArray();
-            var actual = Helper.getEqualWeights(numVariations);
+            var actual = GBHelper.getEqualWeights(numVariations);
             Assertions.assertEquals(jsonWeights.size(), actual.length);
             for (var i = 0; i < actual.length; i++) {
                 Assertions.assertEquals(jsonWeights.get(i).getAsFloat(), actual[i]);
@@ -117,7 +117,7 @@ public class HelperTest {
     @Test
     public void testParseFeaturesFromGBResponseSuccess() {
         var jsonString = "{\"status\":200,\"features\":{\"my_feature\":{\"defaultValue\":\"default\"},\"my_feature_2\":{\"defaultValue\":\"default\"}}}";
-        var result = Helper.parseFeaturesFromGBResponse(jsonString);
+        var result = GBHelper.parseFeaturesFromGBResponse(jsonString);
         Assertions.assertEquals(2, result.size());
         Assertions.assertTrue(result.containsKey("my_feature"));
         Assertions.assertTrue(result.containsKey("my_feature_2"));
@@ -126,14 +126,14 @@ public class HelperTest {
     @Test
     public void testParseFeaturesFromGBResponseFailure() {
         var jsonString = "{\"status\":500,\"features\":{}}";
-        var result = Helper.parseFeaturesFromGBResponse(jsonString);
+        var result = GBHelper.parseFeaturesFromGBResponse(jsonString);
         Assertions.assertEquals(0, result.size());
     }
 
     @Test
     public void testParseFeaturesFromGBResponseMalformed() {
         var jsonString = "<html></html>";
-        var result = Helper.parseFeaturesFromGBResponse(jsonString);
+        var result = GBHelper.parseFeaturesFromGBResponse(jsonString);
         Assertions.assertEquals(0, result.size());
     }
 }

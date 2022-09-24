@@ -1,6 +1,6 @@
 package com.davidblanar.growthbook;
 
-public class ExperimentResult {
+public class GBExperimentResult {
     public boolean inExperiment;
     public int variationId;
     public Object value;

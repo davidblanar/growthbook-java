@@ -1,22 +1,22 @@
 package com.davidblanar.growthbook;
 
-public class Context {
+public class GBContext {
     public boolean enabled;
-    public Attributes attributes;
+    public GBAttributes attributes;
     public String url;
-    public Features features;
-    public ForcedVariations forcedVariations;
+    public GBFeatures features;
+    public GBForcedVariations forcedVariations;
     public boolean qaMode;
-    public TrackingCallback trackingCallback;
+    public GBTrackingCallback trackingCallback;
 
-    public Context(
+    public GBContext(
         boolean enabled,
-        Attributes attributes,
+        GBAttributes attributes,
         String url,
-        Features features,
-        ForcedVariations forcedVariations,
+        GBFeatures features,
+        GBForcedVariations forcedVariations,
         boolean qaMode,
-        TrackingCallback trackingCallback
+        GBTrackingCallback trackingCallback
     ) {
         this.enabled = enabled;
         this.attributes = attributes;

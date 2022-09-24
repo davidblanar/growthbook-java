@@ -21,7 +21,7 @@ public class ConditionEvaluatorTest {
             var condition = test.get(1);
             var attributes = test.get(2);
             var expected = test.get(3).getAsBoolean();
-            var actual = ConditionEvaluator.evalCondition(attributes, condition);
+            var actual = GBConditionEvaluator.evalCondition(attributes, condition);
             Assertions.assertEquals(expected, actual);
 
         }

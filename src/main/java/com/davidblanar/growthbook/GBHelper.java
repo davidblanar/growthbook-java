@@ -1,14 +1,12 @@
 package com.davidblanar.growthbook;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 
 import java.math.BigInteger;
-import java.util.HashMap;
 
-public class Helper {
+public class GBHelper {
     private static final BigInteger INIT32 = new BigInteger("811c9dc5", 16);
     private static final BigInteger PRIME32 = new BigInteger("01000193", 16);
     private static final BigInteger MOD32 = new BigInteger("2").pow(32);
@@ -78,19 +76,19 @@ public class Helper {
         return -1;
     }
 
-    public static Features parseFeaturesFromGBResponse(String jsonString) {
+    public static GBFeatures parseFeaturesFromGBResponse(String jsonString) {
         try {
             var json = JsonParser.parseString(jsonString).getAsJsonObject();
             var status = json.get("status").getAsInt();
             if (status == 200) {
                 if (json.has("features")) {
-                    return gson.fromJson(json.get("features"), Features.class);
+                    return gson.fromJson(json.get("features"), GBFeatures.class);
                 }
-                return new Features();
+                return new GBFeatures();
             }
-            return new Features();
+            return new GBFeatures();
         } catch (JsonSyntaxException e) {
-            return new Features();
+            return new GBFeatures();
         }
 
     }

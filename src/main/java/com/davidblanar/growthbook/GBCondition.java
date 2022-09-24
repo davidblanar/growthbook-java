@@ -2,4 +2,4 @@ package com.davidblanar.growthbook;
 
 import java.util.HashMap;
 
-public class Features extends HashMap<String, Feature> {}
+public class GBCondition extends HashMap<String, Object> {}

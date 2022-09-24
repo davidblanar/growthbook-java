@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-public class ConditionEvaluator {
+public class GBConditionEvaluator {
     private static final String OR = "$or";
     private static final String NOR = "$nor";
     private static final String AND = "$and";

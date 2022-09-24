@@ -13,8 +13,8 @@ public class GrowthBookTest {
 
     public GrowthBookTest() throws IOException {}
 
-    private Context mockContext(Attributes attributes, Features features, ForcedVariations forcedVariations) {
-        return new Context(
+    private GBContext mockContext(GBAttributes attributes, GBFeatures features, GBForcedVariations forcedVariations) {
+        return new GBContext(
                 true,
                 attributes,
                 "",
@@ -33,17 +33,17 @@ public class GrowthBookTest {
             var title = test.get(0).getAsString();
             System.out.println("Testing feature " + title);
             var featuresJson = test.get(1).getAsJsonObject();
-            var features = new Features();
+            var features = new GBFeatures();
             if (featuresJson.has("features")) {
-                features = gson.fromJson(featuresJson.get("features"), Features.class);
+                features = gson.fromJson(featuresJson.get("features"), GBFeatures.class);
             }
-            var attributes = new Attributes();
+            var attributes = new GBAttributes();
             if (featuresJson.has("attributes")) {
-                attributes = gson.fromJson(featuresJson.get("attributes"), Attributes.class);
+                attributes = gson.fromJson(featuresJson.get("attributes"), GBAttributes.class);
             }
-            var forcedVariations = new ForcedVariations();
+            var forcedVariations = new GBForcedVariations();
             if (featuresJson.has("forcedVariations")) {
-                forcedVariations = gson.fromJson(featuresJson.get("forcedVariations"), ForcedVariations.class);
+                forcedVariations = gson.fromJson(featuresJson.get("forcedVariations"), GBForcedVariations.class);
             }
             var key = test.get(2).getAsString();
             var expected = test.get(3).getAsJsonObject();

@@ -4,7 +4,7 @@ import com.google.gson.JsonElement;
 
 import java.util.List;
 
-public class FeatureRule {
+public class GBFeatureRule {
     public JsonElement condition;
     public Float coverage;
     public Object force;
