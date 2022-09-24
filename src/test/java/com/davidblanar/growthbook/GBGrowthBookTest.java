@@ -7,11 +7,11 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-public class GrowthBookTest {
+public class GBGrowthBookTest {
     private final JsonObject casesObj = CasesHelper.getCases();
     private final Gson gson = new Gson();
 
-    public GrowthBookTest() throws IOException {}
+    public GBGrowthBookTest() throws IOException {}
 
     private GBContext mockContext(GBAttributes attributes, GBFeatures features, GBForcedVariations forcedVariations) {
         return new GBContext(

@@ -7,10 +7,10 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.text.DecimalFormat;
 
-public class HelperTest {
+public class GBHelperTest {
     private final JsonObject casesObj = CasesHelper.getCases();
 
-    public HelperTest() throws IOException {}
+    public GBHelperTest() throws IOException {}
 
     @Test
     public void testHash() {

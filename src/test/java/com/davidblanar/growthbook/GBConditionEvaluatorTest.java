@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-public class ConditionEvaluatorTest {
+public class GBConditionEvaluatorTest {
     private final JsonObject casesObj = CasesHelper.getCases();
 
-    public ConditionEvaluatorTest() throws IOException {}
+    public GBConditionEvaluatorTest() throws IOException {}
 
     @Test
     public void testEvalCondition() {
