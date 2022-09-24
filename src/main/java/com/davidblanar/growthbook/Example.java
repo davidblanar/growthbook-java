@@ -23,7 +23,9 @@ public class Example {
         );
         var gb = new GrowthBook(context);
         System.out.println(gb.evalFeature("my_feature").value); // "default"
+        System.out.println(gb.evalFeature("my_feature").on); // true
         System.out.println(gb.evalFeature("doesnt_exist").value); // null
+        System.out.println(gb.evalFeature("doesnt_exist").on); // false
     }
 
     private static String fakeApiCall() {
