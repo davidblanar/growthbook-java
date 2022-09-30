@@ -1,4 +1,4 @@
-package com.github.davidblanar.growthbook;
+package io.github.davidblanar.growthbook;
 
 import com.google.gson.JsonObject;
 import org.junit.jupiter.api.Assertions;

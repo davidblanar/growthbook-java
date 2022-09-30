@@ -1,4 +1,4 @@
-package com.github.davidblanar.growthbook;
+package io.github.davidblanar.growthbook;
 
 public class Example {
     public static void main(String[] args) {

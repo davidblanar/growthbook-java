@@ -1,4 +1,4 @@
-package com.github.davidblanar.growthbook;
+package io.github.davidblanar.growthbook;
 
 public class GBFeatureResult {
     public static final String UNKNOWN_FEATURE = "unknownFeature";
