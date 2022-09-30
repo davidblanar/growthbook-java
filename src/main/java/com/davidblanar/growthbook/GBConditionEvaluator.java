@@ -292,11 +292,11 @@ public class GBConditionEvaluator {
                 case LT:
                     return x.compareTo(y) < 0;
                 case LTE:
-                    return Objects.equals(x, y) || x.compareTo(y) < 0;
+                    return x.compareTo(y) <= 0;
                 case GT:
                     return x.compareTo(y) > 0;
                 case GTE:
-                    return Objects.equals(x, y) || x.compareTo(y) > 0;
+                    return x.compareTo(y) >= 0;
             }
         }
         return false;
