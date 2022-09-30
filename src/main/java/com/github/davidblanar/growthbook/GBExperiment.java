@@ -1,4 +1,4 @@
-package com.davidblanar.growthbook;
+package com.github.davidblanar.growthbook;
 
 import java.util.List;
 

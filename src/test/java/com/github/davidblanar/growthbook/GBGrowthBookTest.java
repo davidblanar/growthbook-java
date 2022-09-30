@@ -1,4 +1,4 @@
-package com.davidblanar.growthbook;
+package com.github.davidblanar.growthbook;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;

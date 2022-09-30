@@ -1,4 +1,4 @@
-package com.davidblanar.growthbook;
+package com.github.davidblanar.growthbook;
 
 public class GBExperimentResult {
     public boolean inExperiment;
