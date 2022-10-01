@@ -2,6 +2,17 @@ package io.github.davidblanar.growthbook;
 
 public class Example {
     public static void main(String[] args) {
+        // {
+        //   "status":200,
+        //   "features":{
+        //      "my_feature":{
+        //         "defaultValue":"default"
+        //      },
+        //      "my_feature_2":{
+        //         "defaultValue":"default"
+        //      }
+        //   }
+        // }
         var jsonString = fakeApiCall();
         var features = GBHelper.parseFeaturesFromGBResponse(jsonString);
         var attributes = new GBAttributes();
